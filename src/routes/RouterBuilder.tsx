@@ -14,7 +14,6 @@ import Dashboard from "./Dashboard";
 // Route wrapper
 import PrivateRoutes from "../foundation/routeWrapper/PrivateRoutes";
 import ProjectRoutes from "../foundation/routeWrapper/ProjectRoutes";
-import { AuthContextProvider } from '../context/AuthContext.tsx';
 const RouterBuilder = () => {
  
 	// Declare Routes

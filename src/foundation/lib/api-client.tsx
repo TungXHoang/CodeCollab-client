@@ -20,7 +20,7 @@ api.interceptors.response.use(
   },
 	(error) => {
     const message = error.response?.data?.message || error.message;
-
+		console.log(message);
     return Promise.reject(error);
   },
 );
