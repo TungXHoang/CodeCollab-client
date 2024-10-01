@@ -21,15 +21,14 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build \
+        run: docker build -t hoangtung2354/codecollab-client \
           --build-arg VITE_RAPID_API_URL='${{ secrets.VITE_RAPID_API_URL }}' \
           --build-arg VITE_RAPID_API_HOST='${{ secrets.VITE_RAPID_API_HOST }}' \
           --build-arg VITE_RAPID_API_KEY='${{ secrets.VITE_RAPID_API_KEY }}' \
           --build-arg VITE_CLIENT_BASEURL='${{ secrets.VITE_CLIENT_BASEURL }}' \
           --build-arg VITE_BACKEND_PORT='${{ secrets.VITE_BACKEND_PORT }}' \
           --build-arg VITE_APP_LOGO='${{ secrets.VITE_APP_LOGO }}' \
-          --build-arg VITE_IMAGEKIT_ENDPOINT='${{ secrets.VITE_IMAGEKIT_ENDPOINT }}' \
-          -t hoangtung2354/codecollab-client .
+          --build-arg VITE_IMAGEKIT_ENDPOINT='${{ secrets.VITE_IMAGEKIT_ENDPOINT }}' .
 
       - name: Publish Image to Docker Hub
         run: docker push hoangtung2354/codecollab-client:latest
