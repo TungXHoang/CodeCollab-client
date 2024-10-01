@@ -1,0 +1,49 @@
+name: Deploy CodeCollab Client
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build \
+          --build-arg VITE_RAPID_API_URL='${{ secrets.VITE_RAPID_API_URL }}' \
+          --build-arg VITE_RAPID_API_HOST='${{ secrets.VITE_RAPID_API_HOST }}' \
+          --build-arg VITE_RAPID_API_KEY='${{ secrets.VITE_RAPID_API_KEY }}' \
+          --build-arg VITE_CLIENT_BASEURL='${{ secrets.VITE_CLIENT_BASEURL }}' \
+          --build-arg VITE_BACKEND_PORT='${{ secrets.VITE_BACKEND_PORT }}' \
+          --build-arg VITE_APP_LOGO='${{ secrets.VITE_APP_LOGO }}' \
+          --build-arg VITE_IMAGEKIT_ENDPOINT='${{ secrets.VITE_IMAGEKIT_ENDPOINT }}' \
+          -t hoangtung2354/codecollab-client .
+
+      - name: Publish Image to Docker Hub
+        run: docker push hoangtung2354/codecollab-client:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull Docker Image from Hub
+        run: docker pull hoangtung2354/codecollab-client:latest
+
+      - name: Remove existing containers (if any)
+        run: docker rm -f client-container
+
+      - name: Run Client Container
+        run: |
+          docker run -d -p 5173:80 --name client-container hoangtung2354/codecollab-client:latest
