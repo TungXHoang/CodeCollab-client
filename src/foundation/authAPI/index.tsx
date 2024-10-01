@@ -55,7 +55,7 @@ async function LoginAPI(credential: LoginCredential) {
 }
 
 async function isLoggedIn() {
-	const response = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/auth`);
+	const response = await Axios.post(`/api/users/auth`);
 	if (response.data.auth) {
 		return response.data;
 	}
