@@ -6,7 +6,7 @@ import { editor } from "monaco-editor";
 import randomColor from "randomcolor"
 import { CursorStyling } from "../foundation/utils/CursorStyling";
 
-const serverWsUrl = `ws://localhost:${import.meta.env.VITE_BACKEND_PORT}`
+const serverWsUrl = `ws://44.222.221.76:${import.meta.env.VITE_BACKEND_PORT}`
 
 export const useYjs = (
   editorRef: editor.IStandaloneCodeEditor | null,
