@@ -10,7 +10,7 @@ interface LoginCredential {
 
 
 async function RegisterAPI(registerCredential: IRegisterCrendential ) {
-	const response = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/register`, registerCredential);
+	const response = await Axios.post(`/api/users/register`, registerCredential);
 	if (response.data.auth) {
 		return {
 			auth: true,
@@ -29,7 +29,7 @@ async function RegisterAPI(registerCredential: IRegisterCrendential ) {
 
 async function LogoutAPI() {
 	try {
-		const response = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/logout`);
+		const response = await Axios.post(`/api/users/logout`);
 		return response;
 	}
 	catch (err) {
@@ -40,7 +40,7 @@ async function LogoutAPI() {
 
 async function LoginAPI(credential: LoginCredential) {
 	try {
-		const response = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/login`, credential);
+		const response = await Axios.post(`/api/users/login`, credential);
 		if (response.data.auth) {
 			return {
 				auth: response.data.auth,
@@ -64,7 +64,7 @@ async function isLoggedIn() {
 
 async function GetAllUsers() {
 	try {
-		const response = await Axios.get(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/getall`)
+		const response = await Axios.get(`/api/users/getall`)
 		return response.data;
 	}
 	catch (err) {
@@ -75,7 +75,7 @@ async function GetAllUsers() {
 
 async function GetUserProfile({userEmail}: IGetSingleUser) {
 	try {
-		const res: AxiosResponse<IUser,IGetSingleUser> = await Axios.get(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/single/${userEmail}`);
+		const res: AxiosResponse<IUser,IGetSingleUser> = await Axios.get(`/api/users/single/${userEmail}`);
 		const result = res.data;
 		return result;
 	} catch (err) {
@@ -91,7 +91,7 @@ async function GetUserProfile({userEmail}: IGetSingleUser) {
 
 async function UpdateUserProfile(updateCredential: IUpdateUserProfile) {
 	try {
-		const res:AxiosResponse<IUpdateUserProfileResponse,IUpdateUserProfile> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/update`, updateCredential )
+		const res:AxiosResponse<IUpdateUserProfileResponse,IUpdateUserProfile> = await Axios.post(`/api/users/update`, updateCredential )
 		showToast("success", res.data.message, { containerId: "UserProfileToast" })
 		const result = res.data;
 		return result
@@ -110,7 +110,7 @@ async function UpdateUserProfile(updateCredential: IUpdateUserProfile) {
 
 async function UpdateUserAvatar(updateCredential: FormData) {
 	try {
-		const res:AxiosResponse<IUpdateUserAvatarResponse,FormData> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/users/update-avatar`, updateCredential )
+		const res:AxiosResponse<IUpdateUserAvatarResponse,FormData> = await Axios.post(`/api/users/update-avatar`, updateCredential )
 		showToast("success", res.data.message, { containerId: "UserProfileToast" })
 		const result = res.data;
 		return result

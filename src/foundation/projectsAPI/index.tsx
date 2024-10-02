@@ -21,7 +21,7 @@ const getContainerId = () => {
 async function createProject(createProjectParams: IProject.ICreateProjectParams) {
 	try {
 		
-		const res: AxiosResponse<IProject.ICreateProjectResponse, IProject.ICreateProjectParams> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects`, createProjectParams);
+		const res: AxiosResponse<IProject.ICreateProjectResponse, IProject.ICreateProjectParams> = await Axios.post(`/api/projects`, createProjectParams);
 		showToast("success", "Project created successfully", { containerId: getContainerId() })
 		const result = res.data
 		return result;
@@ -38,7 +38,7 @@ async function createProject(createProjectParams: IProject.ICreateProjectParams)
 
 async function deleteProject(formData: { userId: string, projectsId: string[] }) {
 	try {
-		const res: AxiosResponse<{message:string},{ userId: string, projectsId: string[]}> = await Axios.delete(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects`, {
+		const res: AxiosResponse<{message:string},{ userId: string, projectsId: string[]}> = await Axios.delete(`/api/projects`, {
 			headers: { Authorization: formData.userId},
 			data: formData
 		});
@@ -61,7 +61,7 @@ async function deleteProject(formData: { userId: string, projectsId: string[] })
 
 async function shareProject(shareProjectParams: IProject.IShareProjectParams) {
 	try {
-		const res: AxiosResponse<IProject.IShareProjectResponse,IProject.IShareProjectParams> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects/share`,shareProjectParams);
+		const res: AxiosResponse<IProject.IShareProjectResponse,IProject.IShareProjectParams> = await Axios.post(`/api/projects/share`,shareProjectParams);
 		showToast("success", res.data.message, { containerId: getContainerId() })
 		const result = res.data;
 		return result;
@@ -77,7 +77,7 @@ async function shareProject(shareProjectParams: IProject.IShareProjectParams) {
 
 async function deleteGuest({userId, guestId, projectId}:IProject.IDeleteGuestParams) {
 	try {
-		const res: AxiosResponse<IProject.IDeleteGuestResponse,IProject.IDeleteGuestResponse> = await Axios.delete(`${import.meta.env.VITE_CLIENT_BASEURL}/api/guests/${projectId}`, {
+		const res: AxiosResponse<IProject.IDeleteGuestResponse,IProject.IDeleteGuestResponse> = await Axios.delete(`/api/guests/${projectId}`, {
 			headers: {Authorization: userId},
 			data: {guestId, projectId}
 		});
@@ -97,7 +97,7 @@ async function deleteGuest({userId, guestId, projectId}:IProject.IDeleteGuestPar
 
 async function updateProject({ userId, projectId, newTitle, newDescription }: IProject.IUpdateProjectParams)  {
 	try {
-		const res: AxiosResponse<IProject.IUpdateProjectResponse,IProject.IUpdateProjectParams> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects/update`, { userId, projectId, newTitle, newDescription })
+		const res: AxiosResponse<IProject.IUpdateProjectResponse,IProject.IUpdateProjectParams> = await Axios.post(`/api/projects/update`, { userId, projectId, newTitle, newDescription })
 		showToast("success", "Update successfully", { containerId: getContainerId() });
 		const result = res.data;
 		return result
@@ -114,7 +114,7 @@ async function updateProject({ userId, projectId, newTitle, newDescription }: IP
 
 async function saveProject({ docName }: { docName: string }) {
 	try {
-		const res: AxiosResponse<{message:string},{docName:string}> = await Axios.post(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects/save`, {docName})
+		const res: AxiosResponse<{message:string},{docName:string}> = await Axios.post(`/api/projects/save`, {docName})
 		const result = res.data;
 		// handle toast noti at UI layer
 		return result;

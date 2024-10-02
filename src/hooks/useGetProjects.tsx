@@ -20,7 +20,7 @@ const useGetProjects = (userId: string | undefined) => {
 		const getProjects = async () => {
 			setLoading(true);
 			try {
-				const res = await Axios.get(`${import.meta.env.VITE_CLIENT_BASEURL}/api/projects/${userId}`);
+				const res = await Axios.get(`/api/projects/${userId}`);
 				setProjects(res.data);
 			} catch (error) {
 				console.log(error)

@@ -66,7 +66,7 @@ export const ProfileProject = ({ project,onDelete, isOwner }: IProfileProjectPro
 	const { guestsList,setGuestsList } = useGetGuests(project._id);
 	return (
 		<li className="mb-[12px] relative px-[16px] py-[12px] rounded-[4px] bg-[#1C2333] text-[#C2C8CC] cursor-pointer">
-			<a className="text-[#5CD2F4] hover:text-[#80E4FF]" href={`${import.meta.env.VITE_CLIENT_BASEURL}/edit/${project._id}`}>
+			<a className="text-[#5CD2F4] hover:text-[#80E4FF]" href={`/edit/${project._id}`}>
 				<h3 className="flex items-center text-[#5CD2F4] font-bold">
 					<span>{project.title}</span>
 				</h3>

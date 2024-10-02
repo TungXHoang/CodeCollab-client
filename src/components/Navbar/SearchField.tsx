@@ -51,7 +51,7 @@ const SearchField = ({ projectsList }: { projectsList: IProjectList }) => {
 						<>
 							{[...filteredProject.owner, ...filteredProject.guest].map((project) => (
 								<li className="text-[12px]  last:rounded-b-[4px] hover:bg-[#2B3245] cursor-pointer" key={project._id}>
-									<a onMouseDown={(e) => e.preventDefault()} className="border-b-[1px] border-[#3c3c3c] flex p-2 gap-2 items-center hover:text-[hsl(0,0%,100%)]" href={`${import.meta.env.VITE_CLIENT_BASEURL}/edit/${project._id}`}>
+									<a onMouseDown={(e) => e.preventDefault()} className="border-b-[1px] border-[#3c3c3c] flex p-2 gap-2 items-center hover:text-[hsl(0,0%,100%)]" href={`/edit/${project._id}`}>
 										<img className="w-[16px] h-[16px]" src={`${import.meta.env.VITE_IMAGEKIT_ENDPOINT}${project.language}.png?tr=w-100,h-100,f-png,lo-true`} />		
 										<div>{project.title}</div>
 									</a>
