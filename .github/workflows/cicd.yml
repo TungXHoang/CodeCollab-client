@@ -36,8 +36,12 @@ jobs:
       - name: Pull Docker Image from Hub
         run: docker pull hoangtung2354/codecollab-client:latest
 
-      - name: Remove existing containers (if any)
-        run: docker rm -f client-container
+      - name: Remove existing client container
+        run: |
+          if [ "$(docker ps -a --format '{{.Names}}' | grep client-container)" ]; then
+            docker stop client-container
+            docker rm client-container 
+          fi
 
       - name: Run Client Container
         run: docker run -d -p 5173:80 --network=codecollab --name client-container hoangtung2354/codecollab-client:latest
