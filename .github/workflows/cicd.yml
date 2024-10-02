@@ -36,6 +36,9 @@ jobs:
       - name: Pull Docker Image from Hub
         run: docker pull hoangtung2354/codecollab-client:latest
 
+      - name: Remove dangling images
+        run: docker rmi -f $(docker images -f "dangling=true" -q)
+
       - name: Remove existing client container
         run: |
           if [ "$(docker ps -a --format '{{.Names}}' | grep client-container)" ]; then
