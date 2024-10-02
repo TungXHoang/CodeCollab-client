@@ -23,6 +23,7 @@ jobs:
           --build-arg VITE_RAPID_API_KEY='${{ secrets.VITE_RAPID_API_KEY }}' \
           --build-arg VITE_CLIENT_BASEURL='${{ secrets.VITE_CLIENT_BASEURL }}' \
           --build-arg VITE_BACKEND_PORT='${{ secrets.VITE_BACKEND_PORT }}' \
+          --build-arg VITE_BACKEND_HOST='${{ secrets.VITE_BACKEND_HOST }}' \
           --build-arg VITE_APP_LOGO='${{ secrets.VITE_APP_LOGO }}' \
           --build-arg VITE_IMAGEKIT_ENDPOINT='${{ secrets.VITE_IMAGEKIT_ENDPOINT }}' .
 
