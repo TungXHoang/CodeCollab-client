@@ -73,6 +73,7 @@ export default function Login() {
 					<input
 						type="password"
 						name="password"
+						autoComplete="off"
 						className="bg-gray-700/[0.15] text-white text-[14px] leading-[24px] rounded-[6px] w-full pt-[24px] pl-[16px] pr-[48px] pb-[5px]"
 						onChange={handleChange}
 						value={credential.password}
