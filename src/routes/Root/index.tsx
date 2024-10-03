@@ -9,7 +9,7 @@ export default function Root() {
 					<a className="text-[13px] font-semibold flex items-center justify-center px-[16px] py-[12px] rounded-[6px] bg-blue-600 text-white hover:bg-blue-500" href="/app">
 						Get Started
 					</a>
-					<a className="text-[13px] font-semibold flex items-center justify-center px-[16px] py-[12px] rounded-[6px] bg-gray-700 text-white hover:bg-gray-600" target="_blank" rel="noopener noreferrer" href="https://github.com/TungXHoang/CodeCollab">
+					<a className="text-[13px] font-semibold flex items-center justify-center px-[16px] py-[12px] rounded-[6px] bg-gray-700 text-white hover:bg-gray-600" target="_blank" rel="noopener noreferrer" href="https://github.com/TungXHoang/CodeCollab-server">
 						Github Repo
 					</a>
 				</div>
