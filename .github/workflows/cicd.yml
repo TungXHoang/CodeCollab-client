@@ -45,7 +45,7 @@ jobs:
           fi
 
       - name: Run Client Container
-        run: docker run -d -p 5173:80 --network=codecollab --name client-container hoangtung2354/codecollab-client:latest
+        run: docker run -d -p 80:80 --network=codecollab --name client-container hoangtung2354/codecollab-client:latest
 
       - name: Remove dangling images
         run: docker rmi -f $(docker images -f "dangling=true" -q)
