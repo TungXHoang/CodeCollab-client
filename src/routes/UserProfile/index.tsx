@@ -97,7 +97,7 @@ const UserProfile = () => {
 							</section>
 						</div>
 						<div className="flex-auto">
-							<div className="max-w-[1200px] px-[16px] ">
+							<div className="px-[16px] ">
 								<div className="flex items-center w-full mb-[10px] py-[10px] pt-[18px] px-[12px] gap-[5px]">
 									<h2 className="text-[hsl(0,0%,80%)] uppercase font-[500]">Projects</h2>
 									{renderedProject && <div className="bg-[hsl(220,12%,20%)] flex items-center justify-center text-center rounded-[2px]">
