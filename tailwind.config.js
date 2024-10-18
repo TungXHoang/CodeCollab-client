@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import formsPlugin from "@tailwindcss/forms";
+
 export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
@@ -11,5 +13,5 @@ export default {
 		fill: ["hover", "focus"],
 		border: ["first", "last"],
 	},
-	plugins: [require("@tailwindcss/forms")],
+	plugins: [formsPlugin],
 };

@@ -23,7 +23,7 @@ ENV VITE_IMAGEKIT_ENDPOINT=$VITE_IMAGEKIT_ENDPOINT
 
 #Build app
 WORKDIR /app
-COPY package.json .
+COPY package*.json .
 RUN npm install
 COPY . .
 RUN npm run build
