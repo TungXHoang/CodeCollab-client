@@ -7,7 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { useEditNavbar } from "../../components/EditingNavbar";
-import useDebounce from "../../hooks/useDebounce.tsx";
+import {useDebounce} from "../../hooks/useDebounce.tsx";
 import { SaveDocsAPI } from "../../foundation/compileAPI/index.tsx"
 import { useYjs } from "../../hooks/useYjs";
 
@@ -24,7 +24,7 @@ const CodeEditorWindow = ({ user, project,language,editorRef,setEditorRef }: ICo
 		
 	const debouncedRequest = useDebounce(async () => {
 		await SaveDocsAPI(project._id);
-	});
+	},3000);
 
 	useYjs(editorRef, project._id, user);
 

@@ -21,9 +21,10 @@ const ShareModal = ({ guestsList,onEditGuest,onClose, project }: IShareModalProp
 	const [copySuccess, setCopySuccess] = useState(false);
 	const [filterQuery, setFilterQuery] = useState("")
 	
-
+	const { protocol, host } = window.location;
+	
 	const CopyToClip = async () => {
-		await navigator.clipboard.writeText(`/edit/${project._id}`); 
+		await navigator.clipboard.writeText(`${protocol}//${host}/edit/${project._id}`); 
     setCopySuccess(true);
 	}
 
@@ -41,7 +42,8 @@ const ShareModal = ({ guestsList,onEditGuest,onClose, project }: IShareModalProp
 	const handleDeleteGuest = (guestId:string) => {
 		onEditGuest(prevGuests => prevGuests!.filter(guest => guest.guest._id !== guestId))
 	}
-
+	
+	
 	return createPortal(
 		<> 
 			{ guestsList &&
@@ -69,7 +71,7 @@ const ShareModal = ({ guestsList,onEditGuest,onClose, project }: IShareModalProp
 									</label>
 									<div className="flex text-[hsl(0,0,80%)] items-center">
 										<span className="w-full text-[14px]">
-											<input className="text-[13px] outline-none focus:border-[#0079F2] rounded-[4px] px-2 py-1 w-full bg-[#2B3245] border-[1px] border-[#3C445C] hover:border-[#5F677A]" type="text" readOnly value={`/edit/${project._id}`} />
+											<input className="text-[13px] outline-none focus:border-[#0079F2] rounded-[4px] px-2 py-1 w-full bg-[#2B3245] border-[1px] border-[#3C445C] hover:border-[#5F677A]" type="text" readOnly value={`${protocol}//${host}/edit/${project._id}`} />
 										</span>
 										<button onClick={CopyToClip} className="flex items-center text-[13px] font-[500] shrink-0 ml-[8px] bg-[#0053A6] hover:bg-[#0079F2] text-[#F5F9FC] px-[6px] py-[6px] h-full rounded-[4px]">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="14px" height="14px" className="mr-[3px]">

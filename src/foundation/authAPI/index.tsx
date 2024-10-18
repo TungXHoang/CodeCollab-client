@@ -1,7 +1,6 @@
-import Axios, {AxiosResponse} from "axios";
-import { IRegisterCrendential, IGetSingleUser,IUpdateUserProfile,IUpdateUserProfileResponse,IUpdateUserAvatarResponse} from "./IAuthAPI";
-import { IUser } from "../../types/auth";
-import { showToast } from "../../foundation/utils/ToastMessage.tsx"
+import Axios from "axios";
+import { IRegisterCrendential} from "./IAuthAPI";
+
 
 interface LoginCredential {
 	password: string;
@@ -62,69 +61,6 @@ async function isLoggedIn() {
 	return { auth: response.data.auth, id: "", lastName:"", firstName:"",email:"" };
 }
 
-async function GetAllUsers() {
-	try {
-		const response = await Axios.get(`/api/users/getall`)
-		return response.data;
-	}
-	catch (err) {
-		console.log(err);
-		return;
-	}
-}
 
-async function GetUserProfile({userEmail}: IGetSingleUser) {
-	try {
-		const res: AxiosResponse<IUser,IGetSingleUser> = await Axios.get(`/api/users/single/${userEmail}`);
-		const result = res.data;
-		return result;
-	} catch (err) {
-		if (Axios.isAxiosError(err)) {
-			// showToast("error", err.response!.data.message, { containerId: shareProjectParams.toastContainer })
-			console.log('err');
-		}
-		else {
-			throw new Error("An unexpected error occurred")
-		}
-	}
-}
 
-async function UpdateUserProfile(updateCredential: IUpdateUserProfile) {
-	try {
-		const res:AxiosResponse<IUpdateUserProfileResponse,IUpdateUserProfile> = await Axios.post(`/api/users/update`, updateCredential )
-		showToast("success", res.data.message, { containerId: "UserProfileToast" })
-		const result = res.data;
-		return result
-	}
-	catch (err) {
-		if (Axios.isAxiosError(err)) {
-			showToast("error", err.response!.data.message, { containerId: "UserProfileToast" })
-			console.log('err');
-		}
-		else {
-			throw new Error("An unexpected error occurred")
-		}
-	}
-	
-}
-
-async function UpdateUserAvatar(updateCredential: FormData) {
-	try {
-		const res:AxiosResponse<IUpdateUserAvatarResponse,FormData> = await Axios.post(`/api/users/update-avatar`, updateCredential )
-		showToast("success", res.data.message, { containerId: "UserProfileToast" })
-		const result = res.data;
-		return result
-	}
-	catch (err) {
-		if (Axios.isAxiosError(err)) {
-			showToast("error", err.response!.data.message, { containerId: "UserProfileToast" })
-			console.log('err');
-		}
-		else {
-			throw new Error("An unexpected error occurred")
-		}
-	}
-	
-}
-
-export { LogoutAPI, LoginAPI, isLoggedIn, RegisterAPI, GetAllUsers, GetUserProfile,UpdateUserProfile,UpdateUserAvatar };
+export { LogoutAPI, LoginAPI, isLoggedIn, RegisterAPI };

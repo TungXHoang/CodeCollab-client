@@ -1,6 +1,6 @@
 import {useState} from "react"
 import { IEditProfileModal, IUpdateInfo } from "./IEditProfileModal";
-import { UpdateUserProfile } from "../../foundation/authAPI";
+import { UpdateUserProfile } from "../../foundation/userAPI";
 
 
 const EditProfileModal = ({ user, setUser, userProfile, onClose }: IEditProfileModal) => {

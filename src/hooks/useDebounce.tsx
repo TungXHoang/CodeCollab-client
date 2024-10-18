@@ -2,7 +2,7 @@ import { useRef, useMemo, useEffect } from "react";
 import _ from "lodash"
 
 
-const useDebounce = (cb: () => void) => {
+const useDebounce = (cb: () => void, waitTime:number) => {
 	//init ref
 	const ref = useRef<typeof cb>();
 
@@ -17,10 +17,10 @@ const useDebounce = (cb: () => void) => {
 			ref.current?.();
 		}
 			// debounce the func that was created once, but has access to the latest callback
-		return _.debounce(func, 3000,{ 'maxWait': 7000 })
+		return _.debounce(func, waitTime,{ 'maxWait': 7000 })
 	}, [])
 	
 	return debounceCallback
 }
 
-export default useDebounce
+export {useDebounce}

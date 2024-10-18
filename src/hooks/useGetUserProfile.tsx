@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IUser } from "../types/auth";
 import { ResizeImgKit } from "../foundation/utils/UtilsFunction.tsx";
-import { GetUserProfile } from "../foundation/authAPI";
+import { GetUserProfile } from "../foundation/userAPI";
 
 function useGetUserProfile(userEmail:string) {
 	const [userProfile, setUserProfile] = useState<IUser | undefined>(undefined);

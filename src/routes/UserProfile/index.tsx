@@ -17,14 +17,12 @@ import { LogoutAPI } from "../../foundation/authAPI";
 //Component
 import ErrorPage from "../ErrorPage/index.tsx"
 import LoadingAnimation from "../../foundation/ui/LoadingAnimation.tsx"
-import { UpdateUserAvatar } from "../../foundation/authAPI";
+import { UpdateUserAvatar } from "../../foundation/userAPI";
 import EditProfileModal from "../../components/EditProfileModal";
 import { ProfileProject } from "../../components/ProjectsList/Project.tsx";
 
 //Typing and Utils functions
 import { IProject } from "../../types/project";
-
-
 
 const UserProfile = () => {
 	const { user, setUser } = useAuthContext();
